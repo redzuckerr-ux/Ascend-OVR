@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<link rel="manifest" href="manifest.webmanifest">
+<title>ASCEND OVR</title>
+<style>
+:root{--bg:#08090d;--panel:#14151c;--panel2:#1b1c24;--gold:#f4c75e;--gold2:#ffdf91;--muted:#a7a8b1;--line:#34343d;--green:#70d6a0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#30210c 0,#0b0b10 42%,#07080b 100%);color:#f5f4ef;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:24px 16px 10px;text-align:center}.brand{letter-spacing:.28em;color:var(--gold);font-size:12px;font-weight:800}.sub{font-size:12px;color:var(--muted);margin-top:5px}
+main{max-width:760px;margin:auto;padding:10px 14px 48px}
+.hero{position:relative;border:1px solid #a77a2d;border-radius:22px;overflow:hidden;background:#101015;box-shadow:0 0 30px #d99b2722}
+.hero img{width:100%;display:block;max-height:610px;object-fit:cover;object-position:center top}
+.heroShade{position:absolute;inset:auto 0 0;background:linear-gradient(transparent,#08080af2 26%);height:34%;display:flex;align-items:end;justify-content:center;padding:18px}
+.heroLabel{font-weight:900;letter-spacing:.16em;color:var(--gold2);text-shadow:0 2px 10px #000;font-size:clamp(23px,6vw,38px)}
+.ovrCard{margin-top:14px;padding:18px;border:1px solid #8e682b;border-radius:18px;background:linear-gradient(135deg,#21190e,#111218 70%);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.eyebrow{font-size:11px;letter-spacing:.16em;color:var(--gold);font-weight:800}.ovr{font-size:54px;line-height:1;font-weight:900;color:#ffe2a0;margin-top:5px}.outof{font-size:13px;color:var(--muted)}
+.pill{font-size:11px;padding:7px 10px;border:1px solid #6d5429;border-radius:999px;color:#f6d58c}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:13px;min-width:0}
+.stat .k{font-size:11px;color:var(--muted);line-height:1.35}.stat .v{font-size:24px;font-weight:850;margin-top:5px;color:#f6d58c}.stat small{color:var(--muted);font-size:10px}
+section{margin-top:16px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px}
+h2{font-size:16px;margin:0 0 12px;letter-spacing:.02em}h3{font-size:13px;color:var(--gold2);margin:0 0 8px}
+.muted{color:var(--muted);font-size:12px;line-height:1.5}
+.radarWrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(130px,.85fr);align-items:center;gap:8px}
+svg{width:100%;height:auto;overflow:visible}.legend{display:grid;gap:10px}.legendrow{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:#ddd}.legendrow b{color:var(--gold2)}
+.tabs{display:flex;gap:7px;overflow:auto;margin:16px 0 0;padding-bottom:2px}.tab{border:1px solid var(--line);background:#12131a;color:#bbb;border-radius:999px;padding:9px 13px;white-space:nowrap;font-size:12px}.tab.active{background:#5b4219;border-color:#c2943b;color:#fff1c9}
+label{display:block;font-size:12px;color:#ddd;margin:11px 0 6px}input,textarea,select{width:100%;background:#0c0d12;border:1px solid #41414b;border-radius:10px;color:#fff;padding:12px;font:inherit;font-size:14px}input[type=number]{appearance:textfield}textarea{min-height:70px;resize:vertical}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.field{min-width:0}.field label{line-height:1.3;min-height:30px}
+button{border:0;border-radius:11px;padding:12px 15px;font-weight:750;font-size:13px;cursor:pointer}.primary{background:linear-gradient(135deg,#f4d17c,#bd842c);color:#171108;width:100%;margin-top:14px}.secondary{background:#272832;color:#eee;border:1px solid #454550}.danger{background:#3a2022;color:#ffb9b9;border:1px solid #714043}
+.entry{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding:12px 0}.entry:first-child{border-top:0}.entry strong{font-size:13px}.entry small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.entryActions{display:flex;gap:6px}.entryActions button{padding:7px 9px;font-size:11px}
+.chart{width:100%;height:210px;display:block}.monthRow{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line);font-size:12px}.monthRow:first-child{border-top:0}.monthRow b{color:var(--gold2)}
+.notice{background:#201b12;border:1px solid #59431f;border-radius:12px;padding:11px;color:#e7d5ad;font-size:11px;line-height:1.5;margin-top:12px}
+.hidden{display:none!important}.footer{text-align:center;color:#777;font-size:10px;padding:20px 0}
+@media(max-width:430px){.radarWrap{grid-template-columns:1fr}.legend{grid-template-columns:1fr 1fr}.hero img{max-height:520px}.ovr{font-size:48px}}
+</style>
+</head>
+<body>
+<header><div class="brand">ASCEND • PERSONAL PROGRESS</div><div class="sub">Your progress is built week by week.</div></header>
+<main>
+<div class="hero"><img src="portrait.webp" alt="Your ASCEND player card"><div class="heroShade"><div class="heroLabel">ASCEND OVR</div></div></div>
+<div class="ovrCard"><div><div class="eyebrow">CUMULATIVE OVERALL RATING</div><div class="ovr" id="mainOvr">50.0</div><div class="outof">/ 100 • long-term progress</div></div><div class="pill" id="weeksPill">0 WEEKS LOGGED</div></div>
+<div class="grid">
+ <div class="stat"><div class="k">LATEST WEEKLY PERFORMANCE</div><div class="v" id="latestPerf">—</div><small id="latestDate">No entries yet</small></div>
+ <div class="stat"><div class="k">AVERAGE WEEKLY PERFORMANCE</div><div class="v" id="avgPerf">—</div><small>Across all logged weeks</small></div>
+ <div class="stat"><div class="k">MONTHLY PERFORMANCE AVG.</div><div class="v" id="monthPerf">—</div><small id="monthLabel">Current month</small></div>
+ <div class="stat"><div class="k">OVR GAIN THIS MONTH</div><div class="v" id="monthGain">—</div><small>Cumulative OVR change</small></div>
+</div>
+<div class="tabs">
+ <button class="tab active" data-tab="overview">Overview</button><button class="tab" data-tab="log">Log weekly stats</button><button class="tab" data-tab="trends">Trends</button><button class="tab" data-tab="monthly">Monthly averages</button><button class="tab" data-tab="history">History & backup</button>
+</div>
+<section id="overview">
+ <h2>Five attribute ratings</h2>
+ <div class="radarWrap"><svg id="radar" viewBox="0 0 300 270" role="img" aria-label="Five attribute radar graph"></svg><div class="legend" id="attributeLegend"></div></div>
+ <div class="notice">Your attribute ratings and overall OVR are cumulative progress indicators. They are designed to reward consistent effort, not to measure your actual medical health, intelligence or worth.</div>
+ <h2 style="margin-top:18px">Weekly OVR journey</h2><canvas class="chart" id="weeklyChart"></canvas><div class="muted">The line shows cumulative OVR after each week. It is designed to rise with every completed week that contains positive progress.</div>
+</section>
+<section id="log" class="hidden">
+ <h2>Log your weekly ASCEND scores</h2><p class="muted">Enter the five scores calculated by your ASCEND app. Use one entry per week. You can edit a week later.</p>
+ <label for="weekDate">Week ending date</label><input id="weekDate" type="date">
+ <div class="fields" id="scoreFields"></div>
+ <label for="notes">A win or lesson from this week (optional)</label><textarea id="notes" placeholder="What did you improve? What did you learn?"></textarea>
+ <button class="primary" id="saveWeek">Save weekly stats</button>
+ <button class="secondary hidden" id="cancelEdit" style="width:100%;margin-top:8px">Cancel editing</button>
+ <div class="notice">A score of 85 after 90 still adds to your cumulative OVR. Weekly performance can fluctuate; your long-term rating reflects accumulated progress.</div>
+</section>
+<section id="trends" class="hidden">
+ <h2>Progress through the year</h2><div class="muted">Weekly performance vs. cumulative OVR</div><canvas class="chart" id="trendChart"></canvas>
+ <h2 style="margin-top:20px">Five attributes over time</h2><canvas class="chart" id="attributesChart"></canvas>
+</section>
+<section id="monthly" class="hidden">
+ <h2>Monthly averages</h2><p class="muted">Each month shows the average of weekly scores logged in that month, plus the cumulative OVR at the end of that month.</p>
+ <div id="monthlyRows"></div>
+ <h2 style="margin-top:18px">Monthly performance trend</h2><canvas class="chart" id="monthlyChart"></canvas>
+</section>
+<section id="history" class="hidden">
+ <h2>Weekly history</h2><div id="historyList" class="muted">No weeks logged yet.</div>
+ <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px"><button class="secondary" id="exportBtn">Export backup</button><button class="secondary" id="importBtn">Import backup</button><input id="importFile" type="file" accept="application/json" class="hidden"></div>
+ <p class="muted" style="margin-top:10px">Your entries are stored in this browser on this device. Export a backup regularly. Clearing browser data may erase entries.</p>
+</section>
+<div class="footer">ASCEND OVR • Built for steady, sustainable progress</div>
+</main>
+<script>
+const ATTRS=["Mental Wellbeing","Discipline","Intellectual","Ambition","Social Confidence"];
+const SHORT=["Mental","Discipline","Intellectual","Ambition","Social"];
+const KEY="ascend_ovr_entries_v1";
+let entries=[], editingId=null;
+try{entries=JSON.parse(localStorage.getItem(KEY)||"[]");if(!Array.isArray(entries))entries=[];}catch(e){entries=[];}
+const $=id=>document.getElementById(id);
+const avg=a=>a.length?a.reduce((s,n)=>s+n,0)/a.length:0;
+const fmt=n=>Number(n).toFixed(1);
+function sorted(){return [...entries].sort((a,b)=>a.date.localeCompare(b.date));}
+function calc(){
+ let ovr=null, attrs=null, out=[];
+ for(const e of sorted()){
+  const vals=ATTRS.map((_,i)=>Number(e.scores[i])||0), perf=avg(vals);
+  if(ovr===null){ovr=perf;attrs=[...vals];}
+  else{
+   ovr += (100-ovr)*(perf/100)*.04;
+   attrs=attrs.map((v,i)=>v+(100-v)*(vals[i]/100)*.04);
+  }
+  out.push({...e,perf,ovr,attrs:[...attrs]});
+ }
+ return out;
+}
+function save(){localStorage.setItem(KEY,JSON.stringify(entries));render();}
+function dateObj(s){return new Date(s+"T12:00:00");}
+function monthKey(s){return s.slice(0,7);}
+function monthName(k){return new Date(k+"-01T12:00:00").toLocaleDateString(undefined,{month:"long",year:"numeric"});}
+function setTab(name){document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.tab===name));["overview","log","trends","monthly","history"].forEach(id=>$(id).classList.toggle("hidden",id!==name));if(name!=="log")drawCharts();}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>setTab(b.dataset.tab)));
+$("scoreFields").innerHTML=ATTRS.map((a,i)=>`<div class="field"><label for="score${i}">${a} (0–100)</label><input id="score${i}" type="number" min="0" max="100" step="1" inputmode="numeric" placeholder="e.g. 85"></div>`).join("");
+$("weekDate").value=new Date().toISOString().slice(0,10);
+$("saveWeek").onclick=()=>{
+ const date=$("weekDate").value;if(!date){alert("Please select the week ending date.");return;}
+ const scores=ATTRS.map((_,i)=>Number($("score"+i).value));
+ if(scores.some(v=>!Number.isFinite(v)||v<0||v>100)){alert("Enter a score from 0 to 100 for all five attributes.");return;}
+ const duplicate=entries.find(e=>e.date===date&&e.id!==editingId);
+ if(duplicate){alert("A week with this ending date already exists. Edit that entry from History.");return;}
+ const item={id:editingId||String(Date.now()),date,scores,notes:$("notes").value.trim()};
+ if(editingId)entries=entries.map(e=>e.id===editingId?item:e);else entries.push(item);
+ editingId=null;clearForm();save();setTab("overview");
+};
+function clearForm(){$("weekDate").value=new Date().toISOString().slice(0,10);ATTRS.forEach((_,i)=>$("score"+i).value="");$("notes").value="";$("saveWeek").textContent="Save weekly stats";$("cancelEdit").classList.add("hidden");}
+$("cancelEdit").onclick=()=>{editingId=null;clearForm();};
+function editEntry(id){const e=entries.find(x=>x.id===id);if(!e)return;editingId=id;$("weekDate").value=e.date;ATTRS.forEach((_,i)=>$("score"+i).value=e.scores[i]);$("notes").value=e.notes||"";$("saveWeek").textContent="Update weekly stats";$("cancelEdit").classList.remove("hidden");setTab("log");window.scrollTo({top:0,behavior:"smooth"});}
+function deleteEntry(id){if(confirm("Delete this weekly entry? Your cumulative history will be recalculated.")){entries=entries.filter(e=>e.id!==id);save();}}
+function drawRadar(vals){
+ const svg=$("radar"),cx=150,cy=128,r=91, angles=ATTRS.map((_,i)=>-Math.PI/2+i*2*Math.PI/5);
+ let s="";
+ for(let ring=1;ring<=4;ring++){const pts=angles.map(a=>`${cx+Math.cos(a)*r*ring/4},${cy+Math.sin(a)*r*ring/4}`).join(" ");s+=`<polygon points="${pts}" fill="none" stroke="#44434a" stroke-width="1"/>`;}
+ angles.forEach((a,i)=>{const x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#55515a"/>`;});
+ const pts=angles.map((a,i)=>`${cx+Math.cos(a)*r*vals[i]/100},${cy+Math.sin(a)*r*vals[i]/100}`).join(" ");
+ s+=`<polygon points="${pts}" fill="#e8b84b" fill-opacity=".25" stroke="#f4c75e" stroke-width="2.5"/>`;
+ angles.forEach((a,i)=>{const x=cx+Math.cos(a)*r*vals[i]/100,y=cy+Math.sin(a)*r*vals[i]/100;s+=`<circle cx="${x}" cy="${y}" r="3.5" fill="#ffe19a"/>`;});
+ angles.forEach((a,i)=>{let x=cx+Math.cos(a)*(r+18),y=cy+Math.sin(a)*(r+18);s+=`<text x="${x}" y="${y}" fill="#d9d5ca" font-size="9" text-anchor="middle" dominant-baseline="middle">${SHORT[i]}</text>`;});
+ svg.innerHTML=s;
+}
+function drawLegend(vals){$("attributeLegend").innerHTML=ATTRS.map((a,i)=>`<div class="legendrow"><span>${a}</span><b>${fmt(vals[i])}</b></div>`).join("");}
+function canvasChart(id,series,labels,opts={}){
+ const c=$(id);if(!c||c.classList.contains("hidden"))return;const w=c.clientWidth||320,h=210,dpr=window.devicePixelRatio||1;c.width=w*dpr;c.height=h*dpr;const ctx=c.getContext("2d");ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+ const pad={l:30,r:10,t:14,b:28},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ ctx.font="10px system-ui";ctx.strokeStyle="#3b3b45";ctx.fillStyle="#aaa";ctx.lineWidth=1;
+ for(let v=0;v<=100;v+=25){let y=pad.t+ch*(1-v/100);ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillText(v,pad.l-24,y+3);}
+ const colors=["#f4c75e","#72c9ef","#d88bf2","#79d7a6","#f18f78","#fff0c5"];
+ series.forEach((ser,si)=>{ctx.beginPath();let started=false;ser.values.forEach((v,i)=>{if(v==null)return;let x=pad.l+(labels.length<=1?cw/2:i*cw/(labels.length-1)),y=pad.t+ch*(1-v/100);if(!started){ctx.moveTo(x,y);started=true}else ctx.lineTo(x,y);});ctx.strokeStyle=colors[si%colors.length];ctx.lineWidth=2;ctx.stroke();ser.values.forEach((v,i)=>{if(v==null)return;let x=pad.l+(labels.length<=1?cw/2:i*cw/(labels.length-1)),y=pad.t+ch*(1-v/100);ctx.beginPath();ctx.arc(x,y,2.5,0,Math.PI*2);ctx.fillStyle=colors[si%colors.length];ctx.fill();});});
+ const step=Math.max(1,Math.ceil(labels.length/6));labels.forEach((l,i)=>{if(i%step===0||i===labels.length-1){let x=pad.l+(labels.length<=1?cw/2:i*cw/(labels.length-1));ctx.fillStyle="#aaa";ctx.fillText(l,x-12,h-8);}});
+}
+function render(){
+ const rows=calc(),last=rows.at(-1),allPerf=rows.map(e=>e.perf),currentMonth=new Date().toISOString().slice(0,7),thisMonth=rows.filter(e=>monthKey(e.date)===currentMonth);
+ $("mainOvr").textContent=fmt(last?last.ovr:BASE);$("weeksPill").textContent=`${rows.length} WEEK${rows.length===1?"":"S"} LOGGED`;
+ $("latestPerf").textContent=last?fmt(last.perf):"—";$("latestDate").textContent=last?dateObj(last.date).toLocaleDateString():"No entries yet";
+ $("avgPerf").textContent=rows.length?fmt(avg(allPerf)):"—";$("monthPerf").textContent=thisMonth.length?fmt(avg(thisMonth.map(e=>e.perf))):"—";$("monthLabel").textContent=monthName(currentMonth);
+ const prior=rows.filter(e=>monthKey(e.date)<currentMonth).at(-1);$("monthGain").textContent=thisMonth.length?(last.ovr-(prior?prior.ovr:BASE)>=0?"+":"")+fmt(last.ovr-(prior?prior.ovr:BASE)):"—";
+ const vals=last?last.attrs:ATTRS.map(()=>BASE);drawRadar(vals);drawLegend(vals);
+ $("historyList").innerHTML=rows.length?[...rows].reverse().map(e=>`<div class="entry"><div><strong>${dateObj(e.date).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"})}</strong><small>Weekly ${fmt(e.perf)} • Cumulative OVR ${fmt(e.ovr)}</small></div><div class="entryActions"><button class="secondary" onclick="editEntry('${e.id}')">Edit</button><button class="danger" onclick="deleteEntry('${e.id}')">Delete</button></div></div>`).join(""):"No weeks logged yet.";
+ const groups={};rows.forEach(e=>(groups[monthKey(e.date)]??=[]).push(e));
+ const monthKeys=Object.keys(groups).sort();$("monthlyRows").innerHTML=monthKeys.length?[...monthKeys].reverse().map(k=>{const a=groups[k];return `<div class="monthRow"><span>${monthName(k)}</span><b>Avg ${fmt(avg(a.map(e=>e.perf)))}</b><span>OVR ${fmt(a.at(-1).ovr)}</span></div>`}).join(""):"No monthly data yet.";
+ drawCharts();
+}
+function drawCharts(){
+ const rows=calc(),labels=rows.map(e=>dateObj(e.date).toLocaleDateString(undefined,{month:"short",day:"numeric"}));
+ canvasChart("weeklyChart",[{values:rows.map(e=>e.ovr)}],labels);
+ canvasChart("trendChart",[{values:rows.map(e=>e.perf)},{values:rows.map(e=>e.ovr)}],labels);
+ canvasChart("attributesChart",ATTRS.map((a,i)=>({values:rows.map(e=>e.attrs[i])})),labels);
+ const groups={};rows.forEach(e=>(groups[monthKey(e.date)]??=[]).push(e));const ks=Object.keys(groups).sort();
+ canvasChart("monthlyChart",[{values:ks.map(k=>avg(groups[k].map(e=>e.perf)))},{values:ks.map(k=>groups[k].at(-1).ovr)}],ks.map(k=>new Date(k+"-01T12:00:00").toLocaleDateString(undefined,{month:"short"})));
+}
+$("exportBtn").onclick=()=>{const blob=new Blob([JSON.stringify({app:"ASCEND OVR",version:1,entries},null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="ascend-ovr-backup.json";a.click();URL.revokeObjectURL(a.href);};
+$("importBtn").onclick=()=>$("importFile").click();
+$("importFile").onchange=async ev=>{const f=ev.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!Array.isArray(data.entries))throw Error();if(confirm("Import and replace your current ASCEND OVR entries?")){entries=data.entries;save();}}catch(e){alert("That backup file is not valid.");}ev.target.value="";};
+window.addEventListener("resize",drawCharts);
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+render();
+</script>
+</body></html>
